@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Nav from './components/Nav';
-import Menu from './components/Menu';
-import Content from './components/Content';
+import Nav from './Nav';
+import Menu from './Menu';
+import Main from './Main';
 
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
         <div class="container">
           <div class="columns">
             <Menu/>
-            <Content/>
+            <Main/>
           </div>
         </div>
     </div>
