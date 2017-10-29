@@ -5,14 +5,6 @@ export default class Content extends Component {
     render(){
         return (
           <div className="column is-9">
-            <nav className="breadcrumb" aria-label="breadcrumbs">
-              <ul>
-                <li><a href="../">Bulma</a></li>
-                <li><a href="../">Templates</a></li>
-                <li><a href="../">Examples</a></li>
-                <li className="is-active"><a href="#" aria-current="page">Admin</a></li>
-              </ul>
-            </nav>
             <section className="hero is-info welcome is-small">
               <div className="hero-body">
                 <div className="container">

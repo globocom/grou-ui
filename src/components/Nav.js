@@ -8,7 +8,7 @@ export default class Nav extends Component {
             <div className="container">
               <div className="navbar-brand">
                 <a className="navbar-item brand-text" href="../">
-                  Bulma Admin
+                  Grou
                 </a>
                 <div className="navbar-burger burger" data-target="navMenu">
                   <span></span>
@@ -20,15 +20,6 @@ export default class Nav extends Component {
                 <div className="navbar-start">
                   <a className="navbar-item" href="admin.html">
                     Home
-                  </a>
-                  <a className="navbar-item" href="admin.html">
-                    Orders
-                  </a>
-                  <a className="navbar-item" href="admin.html">
-                    Payments
-                  </a>
-                  <a className="navbar-item" href="admin.html">
-                    Exceptions
                   </a>
                 </div>
 
