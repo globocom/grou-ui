@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Dashboard from './Dashboard';
+import Home from './Home';
 import Tests from './Tests';
 
 
@@ -8,10 +8,12 @@ export default class Main extends Component {
 
     render(){
         return (
-          <Switch>
-            <Route exact path='/' component={Dashboard}/>
-            <Route path='/tests' component={Tests}/>
-          </Switch>
+          <div className="column is-9">
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route path='/tests' component={Tests}/>
+              </Switch>
+          </div>
 
         );
       }

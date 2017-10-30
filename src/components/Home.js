@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Dashboard extends Component {
+export default class Home extends Component {
 
     render(){
         return (
-          <div className="column is-9">
+            <div>
             <section className="hero is-info welcome is-small">
               <div className="hero-body">
                 <div className="container">
@@ -169,7 +169,7 @@ export default class Dashboard extends Component {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
 
         );
       }

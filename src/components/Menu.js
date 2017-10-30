@@ -11,7 +11,7 @@ export default class Menu extends Component {
                 General
               </p>
               <ul className="menu-list">
-                <li><Link to="/">Dashboard</Link></li>
+                <li><Link to="/">Home</Link></li>
                 <li><Link to="/tests">Tests</Link></li>
               </ul>
             </aside>
