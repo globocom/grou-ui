@@ -8,7 +8,7 @@ export default class Main extends Component {
 
     render(){
         return (
-          <div className="column is-9">
+          <div className="column is-12">
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route path='/tests' component={Tests}/>
