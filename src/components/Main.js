@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Tests from './Tests';
@@ -14,7 +15,7 @@ export default class Main extends Component {
               <Route exact path='/' component={Home}/>
               <Route path='/tests' component={Tests}/>
               <Route path='/request-tests' component={RequestTests}/>
-              </Switch>
+            </Switch>
           </div>
 
         );
