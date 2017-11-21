@@ -27,11 +27,11 @@ export default class RequestTests extends Component {
     enviaForm(event){
      event.preventDefault();
      $.ajax({
-      url:'http://localhost:8080/tests/',
+      url:'http://localhost:8080/tests?x-auth-token=gAAAAABaFDGJ0JKcKFZGI1dxHHWdSKhTLUcMMu7E7rLV9QlcgwWkP2Cu2YZjZbLmxlvJtLnguFkipsniocnrFdujyGGXWc3gCcVuXYZKeewlqK7DX2IUKL_T1RGZGUnqosETzPh7yxW5vHkSjxp8N3bltIPerItrVr11MGvySj1ZrKAgBugip1Y',
       contentType:'application/json',
       dataType:'json',
       type:'post',
-      data: JSON.stringify({name:this.state.name, project:this.state.project, name:this.state.properties}),
+      data: JSON.stringify({name:this.state.name, project:this.state.project, properties:this.state.properties}),
       error: function(resposta){
       console.log("erro");
      }
