@@ -25,6 +25,9 @@ export default class Nav extends Component {
                   <a className="navbar-item" href="/tests">
                     Tests
                   </a>
+                  <a className="navbar-item" href="/request-tests">
+                    Request Tests
+                  </a>
                 </div>
 
               </div>
