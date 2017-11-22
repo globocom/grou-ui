@@ -8,7 +8,7 @@ export default class RequestTests extends Component {
   constructor(){
      super();
      this.state = {tests:[]};
-     this.enviaForm = this.enviaForm.bind(this);
+     this.sendForm = this.sendForm.bind(this);
      this.setName = this.setName.bind(this);
      this.setProject = this.setProject.bind(this);
      this.setProperties = this.setProperties.bind(this);
@@ -24,7 +24,7 @@ export default class RequestTests extends Component {
        });
    }
 
-    enviaForm(event){
+    sendForm(event){
      event.preventDefault();
      $.ajax({
       url:'http://localhost:8080/tests?x-auth-token=gAAAAABaFDGJ0JKcKFZGI1dxHHWdSKhTLUcMMu7E7rLV9QlcgwWkP2Cu2YZjZbLmxlvJtLnguFkipsniocnrFdujyGGXWc3gCcVuXYZKeewlqK7DX2IUKL_T1RGZGUnqosETzPh7yxW5vHkSjxp8N3bltIPerItrVr11MGvySj1ZrKAgBugip1Y',
@@ -60,7 +60,7 @@ export default class RequestTests extends Component {
             <section className="section">
 
               <p className="title">Request a Test</p>
-              <form onSubmit={this.enviaForm} method="post">
+              <form onSubmit={this.sendForm} method="post">
                 <CustomInput id="name" type="text" name="name" value={this.state.name} onChange={this.setName} label="Name"/>
                 <CustomInput id="project" type="text" name="project" value={this.state.project} onChange={this.setProject} label="Project"/>
                 <CustomInput id="properties" type="text" name="properties" value={this.state.properties} onChange={this.setProperties} label="Properties"/>
