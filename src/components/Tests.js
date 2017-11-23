@@ -33,6 +33,7 @@ export default class Tests extends Component {
             <table className="table is-bordered is-fullwidth">
               <thead>
                 <tr>
+                  <th><abbr title="Id">Id</abbr></th>
                   <th><abbr title="Name">Name</abbr></th>
                   <th><abbr title="Project">Project</abbr></th>
                   <th><abbr title="Status">Status</abbr></th>
@@ -46,6 +47,7 @@ export default class Tests extends Component {
                  this.state.tests.map(function(test){
                    return (
                      <tr>
+                      <td>{test.id}</td>
                         <td>{test.name}</td>
                         <td>{test.project}</td>
                         <td><span className="tag">{test.status}</span></td>

@@ -19,15 +19,15 @@ export default class Nav extends Component {
               </div>
               <div id="navMenu" className="navbar-menu">
                 <div className="navbar-start">
-                  <a className="navbar-item" href="/">
+                  <Link className="navbar-item" to="/">
                     Dashboard
-                  </a>
-                  <a className="navbar-item" href="/projects">
+                  </Link>
+                  <Link className="navbar-item" to="/projects">
                     Projects
-                  </a>
-                  <a className="navbar-item" href="/tests">
+                  </Link>
+                  <Link className="navbar-item" to="/tests">
                     Tests
-                  </a>
+                  </Link>
                 </div>
 
               </div>
