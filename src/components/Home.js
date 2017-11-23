@@ -1,173 +1,105 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 export default class Home extends Component {
+
+
+  constructor(){
+     super();
+     this.state = {tests:[]};
+
+   }
+
+
+   componentDidMount(){
+     fetch(`http://grou.globoi.com/tests/`)
+       .then(response => response.json())
+       .then(tests => {
+         console.log(tests.length);
+         this.setState({
+           tests:tests._embedded.tests,
+           testsTotal: tests._embedded.tests.length,
+           testsScheduled: tests._embedded.tests.filter((a) => { return a.status == 'SCHEDULED' }).length,
+           testsEnqueued: tests._embedded.tests.filter((a) => { return a.status == 'ENQUEUED' }).length,
+           testsRunning: tests._embedded.tests.filter((a) => { return a.status == 'RUNNING' }).length,
+           tests: tests._embedded.tests.sort((a, b) => { return new Date (a.createdDate) - new Date (b.createdDate) }).reverse().slice(0,6),
+
+         });
+         console.log("state", this.state);
+       });
+
+   }
 
     render(){
         return (
             <div>
-            <section className="hero is-info welcome is-small">
-              <div className="hero-body">
-                <div className="container">
-                  <h1 className="title">
-                    Hello, Admin.
-                  </h1>
-                  <h2 className="subtitle">
-                    I hope you are having a great day!
-                  </h2>
-                </div>
-              </div>
-            </section>
             <section className="info-tiles">
               <div className="tile is-ancestor has-text-centered">
                 <div className="tile is-parent">
                   <article className="tile is-child box">
-                    <p className="title">439k</p>
-                    <p className="subtitle">Users</p>
+                    <p className="title">{ this.state.testsTotal }</p>
+                    <p className="subtitle">Total Tests</p>
                   </article>
                 </div>
                 <div className="tile is-parent">
                   <article className="tile is-child box">
-                    <p className="title">59k</p>
-                    <p className="subtitle">Products</p>
+                    <p className="title">{ this.state.testsScheduled }</p>
+                    <p className="subtitle">Scheduled</p>
                   </article>
                 </div>
                 <div className="tile is-parent">
                   <article className="tile is-child box">
-                    <p className="title">3.4k</p>
-                    <p className="subtitle">Open Orders</p>
+                    <p className="title">{ this.state.testsEnqueued }</p>
+                    <p className="subtitle">Enqueued</p>
                   </article>
                 </div>
                 <div className="tile is-parent">
                   <article className="tile is-child box">
-                    <p className="title">19</p>
-                    <p className="subtitle">Exceptions</p>
+                    <p className="title">{ this.state.testsRunning}</p>
+                    <p className="subtitle">Running</p>
                   </article>
                 </div>
+
+
               </div>
             </section>
             <div className="columns">
-              <div className="column is-6">
+              <div className="column is-12">
                 <div className="card events-card">
                   <header className="card-header">
                     <p className="card-header-title">
-                      Events
+                      Latest Tests
                     </p>
-                    <a href="#" className="card-header-icon" aria-label="more options">
-                      <span className="icon">
-                        <i className="fa fa-angle-down" aria-hidden="true"></i>
-                      </span>
-                    </a>
                   </header>
                   <div className="card-table">
                     <div className="content">
                       <table className="table is-fullwidth is-striped">
+
                         <tbody>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
-                          <tr>
-                            <td width="5%"><i className="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a className="button is-small is-primary" href="#">Action</a></td>
-                          </tr>
+                        {
+                          this.state.tests.map(function(test){
+                            return (
+                              <tr>
+                                <td>{test.name}</td>
+                                <td>{test.project}</td>
+                                <td>
+                                  <Moment format="MMM Do YY - h:mm:ss a">
+                                    {new Date(test.createdDate)}
+                                  </Moment>
+                                </td>
+                                <td><span className="tag">{test.status}</span></td>
+                              </tr>
+                            );
+                          })
+                        }
                         </tbody>
+
                       </table>
                     </div>
                   </div>
-                  <footer className="card-footer">
-                    <a href="#" className="card-footer-item">View All</a>
-                  </footer>
                 </div>
               </div>
-              <div className="column is-6">
-                <div className="card">
-                  <header className="card-header">
-                    <p className="card-header-title">
-                      Inventory Search
-                    </p>
-                    <a href="#" className="card-header-icon" aria-label="more options">
-                      <span className="icon">
-                        <i className="fa fa-angle-down" aria-hidden="true"></i>
-                      </span>
-                    </a>
-                  </header>
-                  <div className="card-content">
-                    <div className="content">
-                      <div className="control has-icons-left has-icons-right">
-                        <input className="input is-large" type="text" placeholder="" />
-                        <span className="icon is-medium is-left">
-                          <i className="fa fa-search"></i>
-                        </span>
-                        <span className="icon is-medium is-right">
-                          <i className="fa fa-check"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <header className="card-header">
-                    <p className="card-header-title">
-                      User Search
-                    </p>
-                    <a href="#" className="card-header-icon" aria-label="more options">
-                      <span className="icon">
-                        <i className="fa fa-angle-down" aria-hidden="true"></i>
-                      </span>
-                    </a>
-                  </header>
-                  <div className="card-content">
-                    <div className="content">
-                      <div className="control has-icons-left has-icons-right">
-                        <input className="input is-large" type="text" placeholder="" />
-                        <span className="icon is-medium is-left">
-                          <i className="fa fa-search"></i>
-                        </span>
-                        <span className="icon is-medium is-right">
-                          <i className="fa fa-check"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
             </div>
 

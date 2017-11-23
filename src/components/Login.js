@@ -21,9 +21,14 @@ export default class Login extends Component {
         })
       }
 
-      fetch('http://localhost:8080/token/'+this.project.value, requestInfo)
+      console.log(requestInfo);
+      console.log(Headers);
+
+
+      fetch('http://grou.globoi.com/token/'+this.project.value, requestInfo)
         .then(response => {
           console.log(response);
+          console.log(response.body);
           if(response.ok){
             return response.status();
           } else {

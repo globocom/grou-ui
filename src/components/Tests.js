@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 import $ from 'jquery';
 
 export default class Tests extends Component {
 
+
+
   constructor(){
      super();
      this.state = {tests:[]};
+
    }
 
 
    componentDidMount(){
-     fetch(`http://localhost:8080/tests/`)
+     fetch(`http://grou.globoi.com/tests/`)
        .then(response => response.json())
        .then(tests => {
-         this.setState({tests:tests._embedded.tests});
+         this.setState({tests:tests._embedded.tests.sort(function(a, b) { return new Date (a.createdDate) - new Date (b.createdDate) }).reverse()});
          console.log("state", this.state);
        });
    }
@@ -25,15 +29,15 @@ export default class Tests extends Component {
             <h1 className="title is-1">Tests</h1>
 
             <section className="section">
-            <h2 className="title is-2">All Tests</h2>
 
             <table className="table is-bordered is-fullwidth">
               <thead>
                 <tr>
                   <th><abbr title="Name">Name</abbr></th>
                   <th><abbr title="Project">Project</abbr></th>
-                  <th><abbr title="Tags">Tags</abbr></th>
+                  <th><abbr title="Status">Status</abbr></th>
                   <th><abbr title="Created By">Created by</abbr></th>
+                  <th><abbr title="Created At">Created Date</abbr></th>
                   <th><abbr title="Dashboard">Dashboard</abbr></th>
                 </tr>
               </thead>
@@ -44,8 +48,13 @@ export default class Tests extends Component {
                      <tr>
                         <td>{test.name}</td>
                         <td>{test.project}</td>
-                        <td>{test.tags}</td>
+                        <td><span className="tag">{test.status}</span></td>
                         <td>{test.createdBy}</td>
+                        <td>
+                          <Moment format="MMM Do YY - h:mm:ss a">
+                            {new Date(test.createdDate)}
+                          </Moment>
+                        </td>
                         <td><Link to={test.dashboard} target="_blank">dashboard</Link></td>
                       </tr>
                     );
