@@ -26,7 +26,7 @@ export default class Tests extends Component {
 
   render(){
     return(
-      <div>
+      <div className="column is-12">
 
       <h1 className="title is-1">Tests</h1>
 
@@ -80,7 +80,19 @@ export default class Tests extends Component {
               id: "dashboard",
               accessor: d => d.dashboard,
               Cell: row => (
-                <Link to={row.value} target="_blank">dashboard</Link>
+                <Link className="button  is-link is-focused" to={row.value} target="_blank">
+                  <i className="fa fa-area-chart"></i>
+                </Link>
+              )
+            },
+            {
+              Header: "View",
+              id: "view",
+              accessor: d => d._links.self.href,
+              Cell: row => (
+                <Link className="button  is-link is-focused" to={ '/tests/' + row.value.match("[^\/]+(?=\/$|$)") }>
+                  <i className="fa fa-eye"></i>
+                </Link>
               )
             },
           ]}
