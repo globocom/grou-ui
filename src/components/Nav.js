@@ -22,9 +22,6 @@ export default class Nav extends Component {
                   <Link className="navbar-item" to="/">
                     Dashboard
                   </Link>
-                  <Link className="navbar-item" to="/projects">
-                    Projects
-                  </Link>
                   <Link className="navbar-item" to="/tests">
                     Tests
                   </Link>

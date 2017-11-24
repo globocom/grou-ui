@@ -80,14 +80,26 @@ export default class Home extends Component {
                           this.state.tests.map(function(test){
                             return (
                               <tr>
-                                <td>{test.name}</td>
-                                <td>{test.project}</td>
                                 <td>
                                   <Moment format="MMM Do YY - h:mm:ss a">
                                     {new Date(test.createdDate)}
                                   </Moment>
                                 </td>
-                                <td><span className="tag">{test.status}</span></td>
+                                <td>{test.createdBy}</td>
+                                <td>{test.project}</td>
+                                <td>{test.name}</td>
+
+
+                                  <td>
+                                    <span className = {
+                                        test.status === 'OK' ? 'tag is-success'
+                                      : test.status === 'ABORTED' ? 'tag is-warning'
+                                      : test.status === 'ERROR' ? 'tag is-danger'
+                                      : 'tag is-info'
+                                    }>
+                                      {test.status}
+                                    </span>
+                                  </td>
                               </tr>
                             );
                           })

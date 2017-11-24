@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 import Moment from 'react-moment';
-import $ from 'jquery';
+import { Link } from 'react-router-dom';
+
+
 
 export default class Tests extends Component {
-
-
 
   constructor(){
      super();
@@ -15,7 +16,7 @@ export default class Tests extends Component {
 
 
    componentDidMount(){
-     fetch(`http://grou.globoi.com/tests/`)
+     fetch(`http://localhost:8080/tests/`)
        .then(response => response.json())
        .then(tests => {
          this.setState({tests:tests._embedded.tests.sort(function(a, b) { return new Date (a.createdDate) - new Date (b.createdDate) }).reverse()});
@@ -23,51 +24,71 @@ export default class Tests extends Component {
        });
    }
 
-    render(){
-        return (
-          <div>
-            <h1 className="title is-1">Tests</h1>
+  render(){
+    return(
+      <div>
 
-            <section className="section">
+      <h1 className="title is-1">Tests</h1>
 
-            <table className="table is-bordered is-fullwidth">
-              <thead>
-                <tr>
-                  <th><abbr title="Id">Id</abbr></th>
-                  <th><abbr title="Name">Name</abbr></th>
-                  <th><abbr title="Project">Project</abbr></th>
-                  <th><abbr title="Status">Status</abbr></th>
-                  <th><abbr title="Created By">Created by</abbr></th>
-                  <th><abbr title="Created At">Created Date</abbr></th>
-                  <th><abbr title="Dashboard">Dashboard</abbr></th>
-                </tr>
-              </thead>
-              <tbody>
-              {
-                 this.state.tests.map(function(test){
-                   return (
-                     <tr>
-                      <td>{test.id}</td>
-                        <td>{test.name}</td>
-                        <td>{test.project}</td>
-                        <td><span className="tag">{test.status}</span></td>
-                        <td>{test.createdBy}</td>
-                        <td>
-                          <Moment format="MMM Do YY - h:mm:ss a">
-                            {new Date(test.createdDate)}
-                          </Moment>
-                        </td>
-                        <td><Link to={test.dashboard} target="_blank">dashboard</Link></td>
-                      </tr>
-                    );
-                })
-              }
+      <ReactTable
+          data={this.state.tests}
+          columns={[
+            {
+              Header: "Created Date",
+              id: "createdDate",
+              accessor: d => d.createdDate,
+              Cell: row => (
+                  <Moment format="MMM Do YY - h:mm:ss a">
+                    { new Date(row.value) }
+                  </Moment>
+              )
+            },
+            {
+              Header: "Created By",
+              id: "createdBy",
+              accessor: d => d.createdBy
+            },
+            {
+              Header: "Name",
+              id: "name",
+              accessor: d => d.name
+            },
+            {
+              Header: "Project",
+              id: "project",
+              accessor: d => d.project
+            },
+            {
+              Header: "Status",
+              id: "status",
+              accessor: d => d.status,
+              Cell: row => (
+                    <span
+                    className = {
+                        row.value === 'OK' ? 'tag is-success'
+                      : row.value === 'ABORTED' ? 'tag is-warning'
+                      : row.value === 'ERROR' ? 'tag is-danger'
+                      : 'tag is-info'
+                    }
+                    >
+                    { row.value }
+                    </span>
+                  )
+            },
+            {
+              Header: "Dashboard",
+              id: "dashboard",
+              accessor: d => d.dashboard,
+              Cell: row => (
+                <Link to={row.value} target="_blank">dashboard</Link>
+              )
+            },
+          ]}
+          defaultPageSize={20}
+          className="-striped -highlight"
+        />
+        </div>
 
-              </tbody>
-            </table>
-            </section>
-            </div>
-
-        );
-      }
+    );
+  }
 }
