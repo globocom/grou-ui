@@ -22,16 +22,16 @@ export default class Test extends Component {
     render(){
         return (
           <div>
-              <div class="column is-6">
-                <div class="card">
-                  <header class="card-header">
-                    <p class="card-header-title">
+              <div className="column is-6">
+                <div className="card">
+                  <header className="card-header">
+                    <p className="card-header-title">
                     Test Details
                     </p>
                   </header>
-                  <div class="card-content">
-                    <div class="content">
-                      <table class="table is-fullwidth">
+                  <div className="card-content">
+                    <div className="content">
+                      <table className="table is-fullwidth">
                         <tbody>
                           <tr>
                             <td><strong>Name</strong></td><td>{ this.state.test.name }</td>

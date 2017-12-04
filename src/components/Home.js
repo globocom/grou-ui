@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 export default class Home extends Component {
 
@@ -19,9 +18,9 @@ export default class Home extends Component {
          this.setState({
            tests:tests._embedded.tests,
            testsTotal: tests._embedded.tests.length,
-           testsScheduled: tests._embedded.tests.filter((a) => { return a.status == 'SCHEDULED' }).length,
-           testsEnqueued: tests._embedded.tests.filter((a) => { return a.status == 'ENQUEUED' }).length,
-           testsRunning: tests._embedded.tests.filter((a) => { return a.status == 'RUNNING' }).length,
+           testsScheduled: tests._embedded.tests.filter((a) => { return a.status === 'SCHEDULED' }).length,
+           testsEnqueued: tests._embedded.tests.filter((a) => { return a.status === 'ENQUEUED' }).length,
+           testsRunning: tests._embedded.tests.filter((a) => { return a.status === 'RUNNING' }).length,
            tests: tests._embedded.tests.sort((a, b) => { return new Date (a.createdDate) - new Date (b.createdDate) }).reverse().slice(0,6),
 
          });

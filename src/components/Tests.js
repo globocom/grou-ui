@@ -90,7 +90,7 @@ export default class Tests extends Component {
               id: "view",
               accessor: d => d._links.self.href,
               Cell: row => (
-                <Link className="button  is-link is-focused" to={ '/tests/' + row.value.match("[^\/]+(?=\/$|$)") }>
+                <Link className="button  is-link is-focused" to={ '/tests/' + row.value.match("[^/]+(?=/$|$)") }>
                   <i className="fa fa-eye"></i>
                 </Link>
               )
