@@ -8,6 +8,7 @@
   "dependencies": {
     "jquery": "^3.1.0",
     "moment": "^2.19.2",
+    "npm": "^5.8.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-moment": "^0.6.8",

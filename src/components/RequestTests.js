@@ -15,7 +15,7 @@ export default class RequestTests extends Component {
 
 
    componentDidMount(){
-     fetch(`http://localhost:8080/tests/`)
+     fetch(`http://grou.globoi.com:8080/tests/`)
        .then(response => response.json())
        .then(tests => {
          this.setState({tests:tests._embedded.tests});
@@ -27,7 +27,7 @@ export default class RequestTests extends Component {
       console.log(JSON.stringify({name:this.state.name, project:this.state.project, durationTimeMillis:this.state.durationtime}));
      event.preventDefault();
      $.ajax({
-      url:'http://localhost:8080/tests?x-auth-token=gAAAAABaFDGJ0JKcKFZGI1dxHHWdSKhTLUcMMu7E7rLV9QlcgwWkP2Cu2YZjZbLmxlvJtLnguFkipsniocnrFdujyGGXWc3gCcVuXYZKeewlqK7DX2IUKL_T1RGZGUnqosETzPh7yxW5vHkSjxp8N3bltIPerItrVr11MGvySj1ZrKAgBugip1Y',
+      url:'http://grou.globoi.com:8080/tests?x-auth-token=gAAAAABaFDGJ0JKcKFZGI1dxHHWdSKhTLUcMMu7E7rLV9QlcgwWkP2Cu2YZjZbLmxlvJtLnguFkipsniocnrFdujyGGXWc3gCcVuXYZKeewlqK7DX2IUKL_T1RGZGUnqosETzPh7yxW5vHkSjxp8N3bltIPerItrVr11MGvySj1ZrKAgBugip1Y',
       contentType:'application/json',
       dataType:'json',
       type:'post',

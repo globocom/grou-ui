@@ -10,7 +10,7 @@ export default class Test extends Component {
      }
 
      componentDidMount(){
-       fetch(`http://localhost:8080/tests/` + this.props.match.params.id)
+       fetch(`http://grou.globoi.com:8080/tests/` + this.props.match.params.id)
          .then(response => response.json())
          .then(test => {
            this.setState({test:test});

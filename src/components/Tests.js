@@ -16,7 +16,7 @@ export default class Tests extends Component {
 
 
    componentDidMount(){
-     fetch(`http://localhost:8080/tests/`)
+     fetch(`http://grou.globoi.com:8080/tests/`)
        .then(response => response.json())
        .then(tests => {
          this.setState({tests:tests._embedded.tests.sort(function(a, b) { return new Date (a.createdDate) - new Date (b.createdDate) }).reverse()});
