@@ -5,10 +5,10 @@ export default class Nav extends Component {
 
     render(){
         return (
-          <nav className="navbar is-white">
+          <nav className="navbar is-fixed-top is-link">
             <div className="container">
               <div className="navbar-brand">
-                <a className="navbar-item brand-text" href="../">
+                <a className="navbar-item brand-text" href="#">
                   Grou
                 </a>
                 <div className="navbar-burger burger" data-target="navMenu">
@@ -19,9 +19,12 @@ export default class Nav extends Component {
               </div>
               <div id="navMenu" className="navbar-menu">
                 <div className="navbar-start">
-                  <a className="navbar-item" href="/">
-                    Home
-                  </a>
+                  <Link className="navbar-item" to="/">
+                    Dashboard
+                  </Link>
+                  <Link className="navbar-item" to="/tests">
+                    Tests
+                  </Link>
                 </div>
 
               </div>
